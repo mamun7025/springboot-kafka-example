@@ -1,0 +1,7 @@
+https://asbnotebook.com/apache-kafka-producer-consumer-example-with-spring-boot/
+https://asbnotebook.com/setting-up-apache-kafka-server-on-windows-system/
+
+***
+https://javatute.com/kafka/spring-boot-kafka-producer-and-consumer-example-step-by-step-guide/
+***
+https://www.baeldung.com/spring-kafka
