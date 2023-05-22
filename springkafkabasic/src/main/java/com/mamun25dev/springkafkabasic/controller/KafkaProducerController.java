@@ -8,9 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.util.concurrent.ListenableFuture;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.concurrent.ExecutionException;
 
 @RestController
@@ -25,6 +24,12 @@ public class KafkaProducerController {
     @PostMapping("/produce")
     public ResponseEntity<String> postModelToKafka(@RequestBody Employee emp) throws ExecutionException, InterruptedException {
         ListenableFuture<SendResult<String, String>> result = kafkaTemplate.send("topic_demo", gson.toJson(emp));
+        return new ResponseEntity<>(result.get().getProducerRecord().value(), HttpStatus.OK);
+    }
+
+    @GetMapping("/produce2")
+    public ResponseEntity<String> postModelToKafka2(@RequestParam(name = "pMsg") String pMsg) throws ExecutionException, InterruptedException {
+        ListenableFuture<SendResult<String, String>> result = kafkaTemplate.send("topic11demo", pMsg);
         return new ResponseEntity<>(result.get().getProducerRecord().value(), HttpStatus.OK);
     }
 
